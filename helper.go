@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func greetUsers() {
@@ -12,8 +11,8 @@ func greetUsers() {
 
 func printFirstNames() {
 	var firstNames []string
-	for _, fn := range bookings {
-		firstNames = append(firstNames, strings.Fields(fn)[0])
+	for _, booking := range bookings {
+		firstNames = append(firstNames, booking["firstName"])
 	}
 	fmt.Printf("Current attendee list %v \n", firstNames)
 }

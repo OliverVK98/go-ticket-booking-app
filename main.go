@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -10,7 +11,7 @@ var appName = "Ticket Booking App"
 const availableTicketQuantity = 50
 
 var remainingTickets uint = 50
-var bookings []string
+var bookings = make([]map[string]string, 0)
 
 func main() {
 
@@ -32,7 +33,14 @@ func main() {
 		}
 
 		remainingTickets -= userTicketQuantity
-		bookings = append(bookings, fmt.Sprintf("%v %v", firstName, lastName))
+
+		var userData = make(map[string]string)
+		userData["firstName"] = firstName
+		userData["lastName"] = lastName
+		userData["email"] = email
+		userData["userTicketQuantity"] = strconv.FormatUint(uint64(userTicketQuantity), 10)
+
+		bookings = append(bookings, userData)
 
 		printFirstNames()
 
